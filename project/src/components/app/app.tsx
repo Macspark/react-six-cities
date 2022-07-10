@@ -1,4 +1,4 @@
-import HomeScreen from '../../pages/home-screen/home-screen';
+import MainScreen from '../../pages/main/main';
 
 type AppProps = {
   offersCount: number;
@@ -6,7 +6,7 @@ type AppProps = {
 
 function App({offersCount}: AppProps): JSX.Element {
   return (
-    <HomeScreen
+    <MainScreen
       offersCount={offersCount}
     />
   );

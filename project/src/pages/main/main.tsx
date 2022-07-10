@@ -1,11 +1,10 @@
-
 import Card from '../../components/card/card';
 
-type HomeScreenProps = {
+type MainScreenProps = {
   offersCount: number;
 }
 
-function HomeScreen({offersCount}: HomeScreenProps): JSX.Element {
+function MainScreen({offersCount}: MainScreenProps): JSX.Element {
   return (
     <>
       <div style={{display: 'none'}}>
@@ -120,4 +119,4 @@ function HomeScreen({offersCount}: HomeScreenProps): JSX.Element {
   );
 }
 
-export default HomeScreen;
+export default MainScreen;
