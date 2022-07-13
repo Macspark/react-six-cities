@@ -1,3 +1,5 @@
+import Header from '../../components/header/header';
+
 function PropertyNotLoggedScreen(): JSX.Element {
   return (
     <div className="page">
