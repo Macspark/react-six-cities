@@ -19,7 +19,7 @@ export const offers: Offer[] = [
         'longitude': 4.895168,
         'zoom': 10
       },
-      'name': 'Amsterdam'
+      'name': 'Paris'
     },
     'description': 'A quiet cozy and picturesque that hides behind a a river by the unique lightness of Amsterdam.',
     'goods': [
@@ -31,7 +31,7 @@ export const offers: Offer[] = [
       'isPro': true,
       'name': 'Angelina'
     },
-    'isFavorite': true,
+    'isFavorite': false,
     'location': {
       'latitude': 52.35514938496378,
       'longitude': 4.673877537499948,
@@ -57,7 +57,7 @@ export const offers: Offer[] = [
         'longitude': 4.895168,
         'zoom': 10
       },
-      'name': 'Amsterdam'
+      'name': 'Cologne'
     },
     'description': 'desc 2',
     'goods': [
@@ -120,7 +120,7 @@ export const offers: Offer[] = [
     'images': [
       'img/1.png'
     ],
-    'isPremium': false,
+    'isPremium': true,
     'previewImage': 'img/4.png',
     'price': 50,
     'rating': 4.2,

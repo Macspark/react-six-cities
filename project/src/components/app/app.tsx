@@ -35,9 +35,11 @@ function App({offers}: AppProps): JSX.Element {
           path={AppRoute.Favorites}
           element={
             <PrivateRoute
-              authorizationStatus={AuthorizationStatus.NoAuth}
+              authorizationStatus={AuthorizationStatus.Auth}
             >
-              <FavoritesScreen />
+              <FavoritesScreen
+                offers={offers.filter((offer) => offer.isFavorite)}
+              />
             </PrivateRoute>
           }
         />
