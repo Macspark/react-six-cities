@@ -1,6 +1,6 @@
 import {useState, ChangeEvent} from 'react';
 
-function CardsList(): JSX.Element {
+function CommentForm(): JSX.Element {
   const [formData, setFormData] = useState({
     review: '',
     rating: '0',
@@ -57,4 +57,4 @@ function CardsList(): JSX.Element {
   );
 }
 
-export default CardsList;
+export default CommentForm;
