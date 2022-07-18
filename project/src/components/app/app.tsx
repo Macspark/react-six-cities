@@ -9,18 +9,19 @@ import MainScreen from '../../pages/main/main';
 import PropertyScreen from '../../pages/property/property';
 //import PropertyNotLoggedScreen from '../../pages/property-not-logged/property-not-logged';
 import NotFoundScreen from '../../pages/not-found/not-found';
+import {Offer} from '../../types/offer';
 
 type AppProps = {
-  offersCount: number;
+  offers: Offer[];
 }
 
-function App({offersCount}: AppProps): JSX.Element {
+function App({offers}: AppProps): JSX.Element {
   return (
     <BrowserRouter>
       <Routes>
         <Route
           path={AppRoute.Root}
-          element={<MainScreen offersCount={offersCount} />}
+          element={<MainScreen offers={offers} />}
         />
         <Route
           path={AppRoute.Offer}
@@ -34,9 +35,11 @@ function App({offersCount}: AppProps): JSX.Element {
           path={AppRoute.Favorites}
           element={
             <PrivateRoute
-              authorizationStatus={AuthorizationStatus.NoAuth}
+              authorizationStatus={AuthorizationStatus.Auth}
             >
-              <FavoritesScreen />
+              <FavoritesScreen
+                offers={offers.filter((offer) => offer.isFavorite)}
+              />
             </PrivateRoute>
           }
         />

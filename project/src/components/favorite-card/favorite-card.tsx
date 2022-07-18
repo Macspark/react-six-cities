@@ -1,28 +1,28 @@
 import {Offer} from '../../types/offer';
 import {Link} from 'react-router-dom';
 
-type CardProps = {
+type FavoriteCardProps = {
   offer: Offer;
 }
 
-function Card({offer}: CardProps): JSX.Element {
+function FavoriteCard({offer}: FavoriteCardProps): JSX.Element {
   const ratingWidth = `${Math.round(offer.rating) * 20}%`;
   const offerLink = `/offer/${offer.id}`;
 
   return (
-    <>
+    <article className="favorites__card place-card">
       {
         offer.isPremium &&
         <div className="place-card__mark">
           <span>Premium</span>
         </div>
       }
-      <div className="cities__image-wrapper place-card__image-wrapper">
+      <div className="favorites__image-wrapper place-card__image-wrapper">
         <Link to={offerLink}>
-          <img className="place-card__image" src="img/apartment-03.jpg" width={260} height={200} alt="" />
+          <img className="place-card__image" src="img/room-small.jpg" width={150} height={110} alt="" />
         </Link>
       </div>
-      <div className="place-card__info">
+      <div className="favorites__card-info place-card__info">
         <div className="place-card__price-wrapper">
           <div className="place-card__price">
             <b className="place-card__price-value">{offer.price}</b>
@@ -32,7 +32,7 @@ function Card({offer}: CardProps): JSX.Element {
             <svg className="place-card__bookmark-icon" width={18} height={19}>
               <use xlinkHref="#icon-bookmark" />
             </svg>
-            <span className="visually-hidden">To bookmarks</span>
+            <span className="visually-hidden">In bookmarks</span>
           </button>
         </div>
         <div className="place-card__rating rating">
@@ -46,8 +46,8 @@ function Card({offer}: CardProps): JSX.Element {
         </h2>
         <p className="place-card__type">{offer.type}</p>
       </div>
-    </>
+    </article>
   );
 }
 
-export default Card;
+export default FavoriteCard;
