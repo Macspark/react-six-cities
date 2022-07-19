@@ -7,7 +7,7 @@ type CardsListProps = {
 }
 
 function CardsList({offers}: CardsListProps): JSX.Element {
-  const [activeOffer, setActiveOffer] = useState({});
+  const [activeOffer, setActiveOffer] = useState<Offer | null>(null);
 
   const mouseOverHandler = (offer: Offer) => {
     if (activeOffer === offer) {

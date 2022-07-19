@@ -1,9 +1,12 @@
 import {useState, ChangeEvent} from 'react';
+import CommentFormStar from '../comment-form-star/comment-form-star';
+
+const RATING_VALUES = ['5', '4', '3', '2', '1'];
 
 function CommentForm(): JSX.Element {
   const [formData, setFormData] = useState({
     review: '',
-    rating: '0',
+    rating: '',
   });
 
   const handleChange = (evt: ChangeEvent<HTMLInputElement> | ChangeEvent<HTMLTextAreaElement>) => {
@@ -15,36 +18,11 @@ function CommentForm(): JSX.Element {
     <form className="reviews__form form" action="#" method="post">
       <label className="reviews__label form__label" htmlFor="review">Your review</label>
       <div className="reviews__rating-form form__rating">
-        <input checked={formData.rating === '5'} onChange={handleChange} className="form__rating-input visually-hidden" name="rating" defaultValue={5} id="5-stars" type="radio" />
-        <label htmlFor="5-stars" className="reviews__rating-label form__rating-label" title="5">
-          <svg className="form__star-image" width={37} height={33}>
-            <use xlinkHref="#icon-star" />
-          </svg>
-        </label>
-        <input checked={formData.rating === '4'} onChange={handleChange} className="form__rating-input visually-hidden" name="rating" defaultValue={4} id="4-stars" type="radio" />
-        <label htmlFor="4-stars" className="reviews__rating-label form__rating-label" title="4">
-          <svg className="form__star-image" width={37} height={33}>
-            <use xlinkHref="#icon-star" />
-          </svg>
-        </label>
-        <input checked={formData.rating === '3'} onChange={handleChange} className="form__rating-input visually-hidden" name="rating" defaultValue={3} id="3-stars" type="radio" />
-        <label htmlFor="3-stars" className="reviews__rating-label form__rating-label" title="3">
-          <svg className="form__star-image" width={37} height={33}>
-            <use xlinkHref="#icon-star" />
-          </svg>
-        </label>
-        <input checked={formData.rating === '2'} onChange={handleChange} className="form__rating-input visually-hidden" name="rating" defaultValue={2} id="2-stars" type="radio" />
-        <label htmlFor="2-stars" className="reviews__rating-label form__rating-label" title="2">
-          <svg className="form__star-image" width={37} height={33}>
-            <use xlinkHref="#icon-star" />
-          </svg>
-        </label>
-        <input checked={formData.rating === '1'} onChange={handleChange} className="form__rating-input visually-hidden" name="rating" defaultValue={1} id="1-star" type="radio" />
-        <label htmlFor="1-star" className="reviews__rating-label form__rating-label" title="1">
-          <svg className="form__star-image" width={37} height={33}>
-            <use xlinkHref="#icon-star" />
-          </svg>
-        </label>
+        {
+          RATING_VALUES.map((item) => (
+            <CommentFormStar key={item} handleChange={handleChange} ratingValue={item} isChecked={formData.rating === item} />
+          ))
+        }
       </div>
       <textarea onChange={handleChange} className="reviews__textarea form__textarea" id="review" name="review" placeholder="Tell how was your stay, what you like and what can be improved" value={formData.review} />
       <div className="reviews__button-wrapper">
