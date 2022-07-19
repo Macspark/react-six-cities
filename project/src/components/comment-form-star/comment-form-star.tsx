@@ -1,5 +1,7 @@
+import {ChangeEvent} from 'react';
+
 type CommentFormStarScreenType = {
-  handleChange: any,
+  handleChange(evt: ChangeEvent<HTMLInputElement> | ChangeEvent<HTMLTextAreaElement>): void,
   ratingValue: string,
   isChecked: boolean,
 }
