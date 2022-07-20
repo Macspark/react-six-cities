@@ -1,12 +1,13 @@
 import {Offer} from '../../types/offer';
 import {Link} from 'react-router-dom';
+import {getRatingWidth} from '../../util';
 
 type FavoriteCardProps = {
   offer: Offer;
 }
 
 function FavoriteCard({offer}: FavoriteCardProps): JSX.Element {
-  const ratingWidth = `${Math.round(offer.rating) * 20}%`;
+  const ratingWidth = getRatingWidth(offer.rating);
   const offerLink = `/offer/${offer.id}`;
 
   return (
