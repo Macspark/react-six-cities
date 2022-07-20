@@ -1,15 +1,15 @@
 import Header from '../../components/header/header';
 import CommentForm from '../../components/comment-form/comment-form';
-import ReviewsList from '../../components/reviews-list/reviews-list';
+import ReviewCardsList from '../../components/review-cards-list/review-cards-list';
 import NotFoundScreen from '../../pages/not-found/not-found';
 import {useParams} from 'react-router-dom';
 import {Offer} from '../../types/offer';
 import {getRatingWidth} from '../../util';
-import {ReviewType} from '../../types/review';
+import {Review} from '../../types/review';
 
 type PropertyScreenProps = {
   offers: Offer[],
-  reviews: ReviewType[],
+  reviews: Review[],
 }
 
 function PropertyScreen({offers, reviews}: PropertyScreenProps): JSX.Element {
@@ -95,11 +95,14 @@ function PropertyScreen({offers, reviews}: PropertyScreenProps): JSX.Element {
                 <h2 className="property__inside-title">What&rsquo;s inside</h2>
                 <ul className="property__inside-list">
                   {
-                    currentOffer.goods.map((item) => (
-                      <li key={item} className="property__inside-item">
-                        {item}
-                      </li>
-                    ))
+                    currentOffer.goods.map((item, index) => {
+                      const key = `${index}-${item}`;
+                      return (
+                        <li key={key} className="property__inside-item">
+                          {item}
+                        </li>
+                      );
+                    })
                   }
                 </ul>
               </div>
@@ -126,7 +129,7 @@ function PropertyScreen({offers, reviews}: PropertyScreenProps): JSX.Element {
                 </div>
               </div>
               <section className="property__reviews reviews">
-                <ReviewsList reviews={reviews} />
+                <ReviewCardsList reviews={reviews} />
                 <CommentForm />
               </section>
             </div>

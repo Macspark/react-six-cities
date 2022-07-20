@@ -1,11 +1,11 @@
-import {ReviewType} from '../../types/review';
+import {Review} from '../../types/review';
 import {getRatingWidth} from '../../util';
 
-type ReviewProps = {
-  review: ReviewType;
+type ReviewCardProps = {
+  review: Review;
 }
 
-function Review({review}: ReviewProps): JSX.Element {
+function ReviewCard({review}: ReviewCardProps): JSX.Element {
   const ratingWidth = getRatingWidth(review.rating);
 
   return (
@@ -34,4 +34,4 @@ function Review({review}: ReviewProps): JSX.Element {
   );
 }
 
-export default Review;
+export default ReviewCard;

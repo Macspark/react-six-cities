@@ -10,11 +10,11 @@ import PropertyScreen from '../../pages/property/property';
 //import PropertyNotLoggedScreen from '../../pages/property-not-logged/property-not-logged';
 import NotFoundScreen from '../../pages/not-found/not-found';
 import {Offer} from '../../types/offer';
-import {ReviewType} from '../../types/review';
+import {Review} from '../../types/review';
 
 type AppProps = {
   offers: Offer[],
-  reviews: ReviewType[],
+  reviews: Review[],
 }
 
 function App({offers, reviews}: AppProps): JSX.Element {
