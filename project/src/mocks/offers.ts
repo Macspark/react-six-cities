@@ -23,12 +23,22 @@ export const offers: Offer[] = [
     },
     'description': 'A quiet cozy and picturesque that hides behind a a river by the unique lightness of Amsterdam.',
     'goods': [
-      'Heating'
+      'Heating',
+      'Wi-Fi',
+      'Laundry',
+      'Something',
+      'Something',
+      'Something',
+      'Something',
+      'Something',
+      'Something',
+      'Something',
+      'Something',
     ],
     'host': {
-      'avatarUrl': 'img/1.png',
+      'avatarUrl': 'img/avatar-angelina.jpg',
       'id': 3,
-      'isPro': true,
+      'isPro': false,
       'name': 'Angelina'
     },
     'isFavorite': false,
@@ -64,7 +74,7 @@ export const offers: Offer[] = [
       'Heating'
     ],
     'host': {
-      'avatarUrl': 'img/1.png',
+      'avatarUrl': 'img/avatar-angelina.jpg',
       'id': 3,
       'isPro': true,
       'name': 'Angelina'
@@ -98,11 +108,9 @@ export const offers: Offer[] = [
       'name': 'Amsterdam'
     },
     'description': 'desc 3',
-    'goods': [
-      'Heating'
-    ],
+    'goods': [],
     'host': {
-      'avatarUrl': 'img/1.png',
+      'avatarUrl': 'img/avatar-angelina.jpg',
       'id': 3,
       'isPro': true,
       'name': 'Angelina'
@@ -140,7 +148,7 @@ export const offers: Offer[] = [
       'Heating'
     ],
     'host': {
-      'avatarUrl': 'img/1.png',
+      'avatarUrl': 'img/avatar-angelina.jpg',
       'id': 3,
       'isPro': true,
       'name': 'Angelina'
