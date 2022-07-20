@@ -4,7 +4,9 @@ export const offers: Offer[] = [
   {
     'id': 1,
     'images': [
-      'img/1.png'
+      'img/apartment-01.jpg',
+      'img/apartment-01.jpg',
+      'img/studio-01.jpg',
     ],
     'isPremium': false,
     'previewImage': 'img/1.png',
@@ -23,12 +25,22 @@ export const offers: Offer[] = [
     },
     'description': 'A quiet cozy and picturesque that hides behind a a river by the unique lightness of Amsterdam.',
     'goods': [
-      'Heating'
+      'Heating',
+      'Wi-Fi',
+      'Laundry',
+      'Something',
+      'Something',
+      'Something',
+      'Something',
+      'Something',
+      'Something',
+      'Something',
+      'Something',
     ],
     'host': {
-      'avatarUrl': 'img/1.png',
+      'avatarUrl': 'img/avatar-angelina.jpg',
       'id': 3,
-      'isPro': true,
+      'isPro': false,
       'name': 'Angelina'
     },
     'isFavorite': false,
@@ -42,7 +54,10 @@ export const offers: Offer[] = [
   {
     'id': 2,
     'images': [
-      'img/1.png'
+      'img/apartment-01.jpg',
+      'img/apartment-01.jpg',
+      'img/studio-01.jpg',
+      'img/room.jpg',
     ],
     'isPremium': true,
     'previewImage': 'img/2.png',
@@ -64,7 +79,7 @@ export const offers: Offer[] = [
       'Heating'
     ],
     'host': {
-      'avatarUrl': 'img/1.png',
+      'avatarUrl': 'img/avatar-angelina.jpg',
       'id': 3,
       'isPro': true,
       'name': 'Angelina'
@@ -80,7 +95,8 @@ export const offers: Offer[] = [
   {
     'id': 3,
     'images': [
-      'img/1.png'
+      'img/apartment-01.jpg',
+      'img/studio-01.jpg',
     ],
     'isPremium': false,
     'previewImage': 'img/3.png',
@@ -98,11 +114,9 @@ export const offers: Offer[] = [
       'name': 'Amsterdam'
     },
     'description': 'desc 3',
-    'goods': [
-      'Heating'
-    ],
+    'goods': [],
     'host': {
-      'avatarUrl': 'img/1.png',
+      'avatarUrl': 'img/avatar-angelina.jpg',
       'id': 3,
       'isPro': true,
       'name': 'Angelina'
@@ -118,7 +132,7 @@ export const offers: Offer[] = [
   {
     'id': 4,
     'images': [
-      'img/1.png'
+      'img/room.jpg',
     ],
     'isPremium': true,
     'previewImage': 'img/4.png',
@@ -140,7 +154,7 @@ export const offers: Offer[] = [
       'Heating'
     ],
     'host': {
-      'avatarUrl': 'img/1.png',
+      'avatarUrl': 'img/avatar-angelina.jpg',
       'id': 3,
       'isPro': true,
       'name': 'Angelina'

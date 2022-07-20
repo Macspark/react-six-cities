@@ -10,12 +10,14 @@ import PropertyScreen from '../../pages/property/property';
 //import PropertyNotLoggedScreen from '../../pages/property-not-logged/property-not-logged';
 import NotFoundScreen from '../../pages/not-found/not-found';
 import {Offer} from '../../types/offer';
+import {Review} from '../../types/review';
 
 type AppProps = {
-  offers: Offer[];
+  offers: Offer[],
+  reviews: Review[],
 }
 
-function App({offers}: AppProps): JSX.Element {
+function App({offers, reviews}: AppProps): JSX.Element {
   return (
     <BrowserRouter>
       <Routes>
@@ -25,7 +27,7 @@ function App({offers}: AppProps): JSX.Element {
         />
         <Route
           path={AppRoute.Offer}
-          element={<PropertyScreen />}
+          element={<PropertyScreen offers={offers} reviews={reviews} />}
         />
         <Route
           path={AppRoute.Login}

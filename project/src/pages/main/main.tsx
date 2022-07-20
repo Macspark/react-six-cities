@@ -2,21 +2,11 @@ import Header from '../../components/header/header';
 import CardsList from '../../components/cards-list/cards-list';
 import Map from '../../components/map/map';
 import {Offer} from '../../types/offer';
+import {CITIES} from '../../const';
 
 type MainScreenProps = {
   offers: Offer[];
 }
-
-const CITIES = {
-  Amsterdam: {
-    'location': {
-      'latitude': 52.370216,
-      'longitude': 4.895168,
-      'zoom': 10,
-    },
-    'name': 'Amsterdam',
-  },
-};
 
 function MainScreen({offers}: MainScreenProps): JSX.Element {
   const offerCount = offers.length;
@@ -82,9 +72,11 @@ function MainScreen({offers}: MainScreenProps): JSX.Element {
                   <li className="places__option" tabIndex={0}>Top rated first</li>
                 </ul>
               </form>
-              <CardsList
-                offers={offers}
-              />
+              <div className="cities__places-list places__list tabs__content">
+                <CardsList
+                  offers={offers}
+                />
+              </div>
             </section>
             <div className="cities__right-section">
               <section className="cities__map map">
