@@ -4,7 +4,9 @@ export const offers: Offer[] = [
   {
     'id': 1,
     'images': [
-      'img/1.png'
+      'img/apartment-01.jpg',
+      'img/apartment-01.jpg',
+      'img/studio-01.jpg',
     ],
     'isPremium': false,
     'previewImage': 'img/1.png',
@@ -52,7 +54,10 @@ export const offers: Offer[] = [
   {
     'id': 2,
     'images': [
-      'img/1.png'
+      'img/apartment-01.jpg',
+      'img/apartment-01.jpg',
+      'img/studio-01.jpg',
+      'img/room.jpg',
     ],
     'isPremium': true,
     'previewImage': 'img/2.png',
@@ -90,7 +95,8 @@ export const offers: Offer[] = [
   {
     'id': 3,
     'images': [
-      'img/1.png'
+      'img/apartment-01.jpg',
+      'img/studio-01.jpg',
     ],
     'isPremium': false,
     'previewImage': 'img/3.png',
@@ -126,7 +132,7 @@ export const offers: Offer[] = [
   {
     'id': 4,
     'images': [
-      'img/1.png'
+      'img/room.jpg',
     ],
     'isPremium': true,
     'previewImage': 'img/4.png',

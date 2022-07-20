@@ -39,24 +39,16 @@ function PropertyScreen({offers, reviews}: PropertyScreenProps): JSX.Element {
         <section className="property">
           <div className="property__gallery-container container">
             <div className="property__gallery">
-              <div className="property__image-wrapper">
-                <img className="property__image" src="img/room.jpg" alt="Studio" />
-              </div>
-              <div className="property__image-wrapper">
-                <img className="property__image" src="img/apartment-01.jpg" alt="Studio" />
-              </div>
-              <div className="property__image-wrapper">
-                <img className="property__image" src="img/apartment-02.jpg" alt="Studio" />
-              </div>
-              <div className="property__image-wrapper">
-                <img className="property__image" src="img/apartment-03.jpg" alt="Studio" />
-              </div>
-              <div className="property__image-wrapper">
-                <img className="property__image" src="img/studio-01.jpg" alt="Studio" />
-              </div>
-              <div className="property__image-wrapper">
-                <img className="property__image" src="img/apartment-01.jpg" alt="Studio" />
-              </div>
+              {
+                currentOffer.images.map((item, index) => {
+                  const key = `${index}-${item}`;
+                  return (
+                    <div key={key} className="property__image-wrapper">
+                      <img className="property__image" src={item} alt="Studio" />
+                    </div>
+                  );
+                })
+              }
             </div>
           </div>
           <div className="property__container container">
@@ -100,21 +92,24 @@ function PropertyScreen({offers, reviews}: PropertyScreenProps): JSX.Element {
                 <b className="property__price-value">€{currentOffer.price}</b>
                 <span className="property__price-text">&nbsp;night</span>
               </div>
-              <div className="property__inside">
-                <h2 className="property__inside-title">What&rsquo;s inside</h2>
-                <ul className="property__inside-list">
-                  {
-                    currentOffer.goods.map((item, index) => {
-                      const key = `${index}-${item}`;
-                      return (
-                        <li key={key} className="property__inside-item">
-                          {item}
-                        </li>
-                      );
-                    })
-                  }
-                </ul>
-              </div>
+              {
+                currentOffer.goods.length > 0 &&
+                <div className="property__inside">
+                  <h2 className="property__inside-title">What&rsquo;s inside</h2>
+                  <ul className="property__inside-list">
+                    {
+                      currentOffer.goods.map((item, index) => {
+                        const key = `${index}-${item}`;
+                        return (
+                          <li key={key} className="property__inside-item">
+                            {item}
+                          </li>
+                        );
+                      })
+                    }
+                  </ul>
+                </div>
+              }
               <div className="property__host">
                 <h2 className="property__host-title">Meet the host</h2>
                 <div className="property__host-user user">
