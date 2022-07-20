@@ -17,7 +17,7 @@ function CardsList({offers}: CardsListProps): JSX.Element {
   };
 
   return (
-    <div className="cities__places-list places__list tabs__content">
+    <>
       {
         offers
           .map((offer) => (
@@ -28,7 +28,7 @@ function CardsList({offers}: CardsListProps): JSX.Element {
             </article>
           ))
       }
-    </div>
+    </>
   );
 }
 
