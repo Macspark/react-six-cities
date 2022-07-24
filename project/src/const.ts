@@ -12,7 +12,31 @@ export enum AuthorizationStatus {
 }
 
 export const CITIES = {
-  Amsterdam: {
+  'Paris': {
+    'location': {
+      'latitude': 52.370216,
+      'longitude': 4.895168,
+      'zoom': 10,
+    },
+    'name': 'Paris',
+  },
+  'Cologne': {
+    'location': {
+      'latitude': 52.370216,
+      'longitude': 4.895168,
+      'zoom': 10,
+    },
+    'name': 'Cologne',
+  },
+  'Brussels': {
+    'location': {
+      'latitude': 52.370216,
+      'longitude': 4.895168,
+      'zoom': 10,
+    },
+    'name': 'Brussels',
+  },
+  'Amsterdam': {
     'location': {
       'latitude': 52.370216,
       'longitude': 4.895168,
@@ -20,7 +44,25 @@ export const CITIES = {
     },
     'name': 'Amsterdam',
   },
+  'Hamburg': {
+    'location': {
+      'latitude': 52.370216,
+      'longitude': 4.895168,
+      'zoom': 10,
+    },
+    'name': 'Hamburg',
+  },
+  'Dusseldorf': {
+    'location': {
+      'latitude': 52.370216,
+      'longitude': 4.895168,
+      'zoom': 10,
+    },
+    'name': 'Dusseldorf',
+  },
 };
+
+export const DEFAULT_CITY = CITIES.Amsterdam;
 
 export const URL_MARKER_DEFAULT =
   'https://assets.htmlacademy.ru/content/intensive/javascript-1/demo/interactive-map/pin.svg';

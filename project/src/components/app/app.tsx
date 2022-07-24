@@ -9,25 +9,18 @@ import MainScreen from '../../pages/main/main';
 import PropertyScreen from '../../pages/property/property';
 //import PropertyNotLoggedScreen from '../../pages/property-not-logged/property-not-logged';
 import NotFoundScreen from '../../pages/not-found/not-found';
-import {Offer} from '../../types/offer';
-import {Review} from '../../types/review';
 
-type AppProps = {
-  offers: Offer[],
-  reviews: Review[],
-}
-
-function App({offers, reviews}: AppProps): JSX.Element {
+function App(): JSX.Element {
   return (
     <BrowserRouter>
       <Routes>
         <Route
           path={AppRoute.Root}
-          element={<MainScreen offers={offers} />}
+          element={<MainScreen />}
         />
         <Route
           path={AppRoute.Offer}
-          element={<PropertyScreen offers={offers} reviews={reviews} />}
+          element={<PropertyScreen />}
         />
         <Route
           path={AppRoute.Login}
@@ -39,9 +32,7 @@ function App({offers, reviews}: AppProps): JSX.Element {
             <PrivateRoute
               authorizationStatus={AuthorizationStatus.Auth}
             >
-              <FavoritesScreen
-                offers={offers.filter((offer) => offer.isFavorite)}
-              />
+              <FavoritesScreen />
             </PrivateRoute>
           }
         />

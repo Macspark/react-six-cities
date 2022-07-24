@@ -6,16 +6,13 @@ import Map from '../../components/map/map';
 import CardsList from '../../components/cards-list/cards-list';
 import {useEffect} from 'react';
 import {useParams} from 'react-router-dom';
-import {Offer} from '../../types/offer';
 import {getRatingWidth} from '../../util';
-import {Review} from '../../types/review';
+import {useAppSelector} from '../../hooks';
+import {reviews} from '../../mocks/reviews';
 
-type PropertyScreenProps = {
-  offers: Offer[],
-  reviews: Review[],
-}
+function PropertyScreen(): JSX.Element {
+  const {offers} = useAppSelector((state) => state);
 
-function PropertyScreen({offers, reviews}: PropertyScreenProps): JSX.Element {
   useEffect(() => {
     window.scrollTo(0, 0);
   });
