@@ -12,6 +12,7 @@ function CitiesList({currentCity}: CitiesListProps): JSX.Element {
   const dispatch = useAppDispatch();
 
   const handleCityChange = (evt: React.MouseEvent<HTMLAnchorElement>) => {
+    evt.preventDefault();
     const city: string = evt.currentTarget.innerText;
     if (city in CITIES) {
       dispatch(changeCity({city: CITIES[city]}));
