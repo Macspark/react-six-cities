@@ -35,8 +35,11 @@ function Map(props: MapProps): JSX.Element {
           .setIcon(defaultCustomIcon)
           .addTo(map);
       });
+
+      map.flyTo({lat: city.location.latitude, lng: city.location.longitude}, city.location.zoom);
     }
-  }, [map, offers]);
+
+  }, [map, offers, city]);
 
   return <div style={{height: '100%'}} ref={mapRef}></div>;
 }
