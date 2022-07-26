@@ -167,4 +167,80 @@ export const offers: Offer[] = [
     },
     'maxAdults': 4,
   },
+  {
+    'id': 5,
+    'images': [
+      'img/room.jpg',
+    ],
+    'isPremium': true,
+    'previewImage': 'img/4.png',
+    'price': 50,
+    'rating': 4.2,
+    'title': 'Another apartment',
+    'type': 'Apartment',
+    'bedrooms': 3,
+    'city': {
+      'location': {
+        'latitude': 48.864716,
+        'longitude': 2.349014,
+        'zoom': 10,
+      },
+      'name': 'Paris',
+    },
+    'description': 'desc 4',
+    'goods': [
+      'Heating'
+    ],
+    'host': {
+      'avatarUrl': 'img/avatar-angelina.jpg',
+      'id': 3,
+      'isPro': true,
+      'name': 'Angelina'
+    },
+    'isFavorite': true,
+    'location': {
+      'latitude': 48.862,
+      'longitude': 2.34,
+      'zoom': 8
+    },
+    'maxAdults': 4,
+  },
+  {
+    'id': 6,
+    'images': [
+      'img/room.jpg',
+    ],
+    'isPremium': true,
+    'previewImage': 'img/4.png',
+    'price': 50,
+    'rating': 4.2,
+    'title': 'Another apartment',
+    'type': 'Apartment',
+    'bedrooms': 3,
+    'city': {
+      'location': {
+        'latitude': 48.864716,
+        'longitude': 2.349014,
+        'zoom': 10,
+      },
+      'name': 'Paris',
+    },
+    'description': 'desc 4',
+    'goods': [
+      'Heating'
+    ],
+    'host': {
+      'avatarUrl': 'img/avatar-angelina.jpg',
+      'id': 3,
+      'isPro': true,
+      'name': 'Angelina'
+    },
+    'isFavorite': true,
+    'location': {
+      'latitude': 48.864714,
+      'longitude': 2.34901277,
+      'zoom': 8
+    },
+    'maxAdults': 4,
+  },
 ];

@@ -2,7 +2,6 @@ import Header from '../../components/header/header';
 import CardsList from '../../components/cards-list/cards-list';
 import CitiesList from '../../components/cities-list/cities-list';
 import Map from '../../components/map/map';
-import {CITIES} from '../../const';
 import {useAppSelector} from '../../hooks';
 import {getOffersInCity} from '../../utils';
 
@@ -49,7 +48,7 @@ function MainScreen(): JSX.Element {
             </section>
             <div className="cities__right-section">
               <section className="cities__map map">
-                <Map city={CITIES.Amsterdam} offers={offersInCity} />
+                <Map city={currentCity} offers={offersInCity} />
               </section>
             </div>
           </div>
