@@ -1,13 +1,13 @@
 import {Offer} from '../../types/offer';
 import Card from '../card/card';
-import {useState} from 'react';
 
 type CardsListProps = {
-  offers: Offer[];
+  offers: Offer[],
+  activeOffer: Offer | undefined,
+  setActiveOffer(newActiveOffer: Offer): void,
 }
 
-function CardsList({offers}: CardsListProps): JSX.Element {
-  const [activeOffer, setActiveOffer] = useState<Offer | null>(null);
+function CardsList({offers, activeOffer, setActiveOffer}: CardsListProps): JSX.Element {
 
   const mouseOverHandler = (offer: Offer) => {
     if (activeOffer === offer) {

@@ -2,23 +2,30 @@ import {useRef, useEffect} from 'react';
 import {Icon, Marker} from 'leaflet';
 import {City} from '../../types/map';
 import {Offer} from '../../types/offer';
-import {URL_MARKER_DEFAULT} from '../../const';
+import {URL_MARKER_DEFAULT, URL_MARKER_ACTIVE} from '../../const';
 import useMap from '../../hooks/useMap';
 import 'leaflet/dist/leaflet.css';
 
 type MapProps = {
-  city: City;
-  offers: Offer[];
+  city: City,
+  offers: Offer[],
+  activeOffer: Offer | undefined,
 };
 
 const defaultCustomIcon = new Icon({
   iconUrl: URL_MARKER_DEFAULT,
   iconSize: [40, 40],
+  iconAnchor: [20, 40],
+});
+
+const activeCustomIcon = new Icon({
+  iconUrl: URL_MARKER_ACTIVE,
+  iconSize: [40, 40],
   iconAnchor: [20, 40]
 });
 
 function Map(props: MapProps): JSX.Element {
-  const {city, offers} = props;
+  const {city, offers, activeOffer} = props;
 
   const mapRef = useRef(null);
   const map = useMap(mapRef, city);
@@ -32,7 +39,11 @@ function Map(props: MapProps): JSX.Element {
         });
 
         marker
-          .setIcon(defaultCustomIcon)
+          .setIcon(
+            activeOffer !== undefined && offer.id === activeOffer.id
+              ? activeCustomIcon
+              : defaultCustomIcon
+          )
           .addTo(map);
       });
 

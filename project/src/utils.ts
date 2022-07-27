@@ -1,22 +1,31 @@
 import {Offer} from './types/offer';
-
-export const sortOffersByCity = (offers: Offer[]): Record<string, Offer[]> => {
-  const offersByCity: Record<string, Offer[]> = {};
-
-  offers.forEach((offer) => {
-    const city: string = offer.city.name;
-
-    if (Object.keys(offersByCity).includes(city)) {
-      offersByCity[city].push(offer);
-    } else {
-      offersByCity[city] = [offer];
-    }
-
-  });
-
-  return offersByCity;
-};
+import {SortType} from './const';
 
 export const getOffersInCity = (offers: Offer[], city: string) => (
   offers.filter((offer) => offer.city.name === city)
 );
+
+export const getSortedOffers = (offers: Offer[], currentSortType: string) => {
+  switch (currentSortType) {
+    case SortType.POPULAR:
+      return offers;
+
+    case SortType.PRICE_LOW_TO_HIGH:
+      return offers.sort((offerA, offerB) => (
+        offerA.price - offerB.price
+      ));
+
+    case SortType.PRICE_HIGH_TO_LOW:
+      return offers.sort((offerA, offerB) => (
+        offerB.price - offerA.price
+      ));
+
+    case SortType.TOP:
+      return offers.sort((offerA, offerB) => (
+        offerB.rating - offerA.rating
+      ));
+
+    default:
+      return offers;
+  }
+};

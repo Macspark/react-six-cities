@@ -11,7 +11,7 @@ function FavoriteCardsList({offers}: FavoriteCardsListProps): JSX.Element {
   offers.forEach((offer) => {
     const city: string = offer.city.name;
 
-    if (Object.keys(offersByCity).includes(city)) {
+    if (city in offersByCity) {
       offersByCity[city].push(offer);
     } else {
       offersByCity[city] = [offer];

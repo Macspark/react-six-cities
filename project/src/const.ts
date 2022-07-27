@@ -64,10 +64,17 @@ export const CITIES: Record<string, City> = {
   },
 };
 
+export const SortType: Record<string, string> = {
+  POPULAR: 'Popular',
+  PRICE_LOW_TO_HIGH: 'Price: low to high',
+  PRICE_HIGH_TO_LOW: 'Price: high to low',
+  TOP: 'Top rated first',
+};
+
 export const DEFAULT_CITY = CITIES.Paris;
 
 export const URL_MARKER_DEFAULT =
   'https://assets.htmlacademy.ru/content/intensive/javascript-1/demo/interactive-map/pin.svg';
 
-export const URL_MARKER_CURRENT =
+export const URL_MARKER_ACTIVE =
   'https://assets.htmlacademy.ru/content/intensive/javascript-1/demo/interactive-map/main-pin.svg';
