@@ -4,7 +4,7 @@ import Card from '../card/card';
 type CardsListProps = {
   offers: Offer[],
   activeOffer: Offer | undefined,
-  setActiveOffer(newActiveOffer: Offer): void,
+  setActiveOffer(newActiveOffer: Offer | undefined): void,
 }
 
 function CardsList({offers, activeOffer, setActiveOffer}: CardsListProps): JSX.Element {
@@ -16,12 +16,16 @@ function CardsList({offers, activeOffer, setActiveOffer}: CardsListProps): JSX.E
     setActiveOffer(offer);
   };
 
+  const mouseLeaveHandler = () => {
+    setActiveOffer(undefined);
+  };
+
   return (
     <>
       {
         offers
           .map((offer) => (
-            <article onMouseOver={() => mouseOverHandler(offer)} key={offer.id} className="cities__card place-card">
+            <article onMouseOver={() => mouseOverHandler(offer)} onMouseLeave={() => mouseLeaveHandler()} key={offer.id} className="cities__card place-card">
               <Card
                 offer={offer}
               />

@@ -5,6 +5,7 @@ import NotFoundScreen from '../../pages/not-found/not-found';
 import Map from '../../components/map/map';
 import CardsList from '../../components/cards-list/cards-list';
 import {useEffect} from 'react';
+import {useLocation} from 'react-router';
 import {useParams} from 'react-router-dom';
 import {getRatingWidth} from '../../util';
 import {useAppSelector} from '../../hooks';
@@ -20,6 +21,11 @@ function PropertyScreen(): JSX.Element {
   const currentOffer = offers.find((offer) =>
     offer.id.toString() === id
   );
+
+  const location = useLocation();
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [location]);
 
   if (!currentOffer) {
     return <NotFoundScreen />;

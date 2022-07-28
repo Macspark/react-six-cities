@@ -50,7 +50,7 @@ function Map(props: MapProps): JSX.Element {
       map.flyTo({lat: city.location.latitude, lng: city.location.longitude}, city.location.zoom);
     }
 
-  }, [map, offers, city]);
+  }, [map, offers, city, activeOffer]);
 
   return <div style={{height: '100%'}} ref={mapRef}></div>;
 }
