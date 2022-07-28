@@ -5,23 +5,27 @@ import NotFoundScreen from '../../pages/not-found/not-found';
 import Map from '../../components/map/map';
 import CardsList from '../../components/cards-list/cards-list';
 import {useEffect} from 'react';
+import {useLocation} from 'react-router';
 import {useParams} from 'react-router-dom';
 import {getRatingWidth} from '../../util';
 import {useAppSelector} from '../../hooks';
 import {reviews} from '../../mocks/reviews';
+import {useState} from 'react';
+import {Offer} from '../../types/offer';
 
 function PropertyScreen(): JSX.Element {
   const {offers} = useAppSelector((state) => state);
-
-  useEffect(() => {
-    window.scrollTo(0, 0);
-  });
-
+  const [activeOffer, setActiveOffer] = useState<Offer | undefined>(undefined);
   const {id} = useParams();
 
   const currentOffer = offers.find((offer) =>
     offer.id.toString() === id
   );
+
+  const location = useLocation();
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [location]);
 
   if (!currentOffer) {
     return <NotFoundScreen />;
@@ -136,14 +140,14 @@ function PropertyScreen(): JSX.Element {
             </div>
           </div>
           <section className="property__map map">
-            <Map city={currentOffer.city} offers={nearbyOffers} />
+            <Map city={currentOffer.city} offers={nearbyOffers} activeOffer={activeOffer} />
           </section>
         </section>
         <div className="container">
           <section className="near-places places">
             <h2 className="near-places__title">Other places in the neighbourhood</h2>
             <div className="near-places__list places__list">
-              <CardsList offers={nearbyOffers} />
+              <CardsList offers={nearbyOffers} activeOffer={activeOffer} setActiveOffer={setActiveOffer} />
             </div>
           </section>
         </div>

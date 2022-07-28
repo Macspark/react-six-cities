@@ -1,7 +1,7 @@
 import {CITIES} from '../../const';
 import {City} from '../../types/map';
 import {useAppDispatch} from '../../hooks';
-import { changeCity } from '../../store/action';
+import {changeCity} from '../../store/action';
 import React from 'react';
 
 type CitiesListProps = {

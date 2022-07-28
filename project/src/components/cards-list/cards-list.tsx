@@ -1,13 +1,13 @@
 import {Offer} from '../../types/offer';
 import Card from '../card/card';
-import {useState} from 'react';
 
 type CardsListProps = {
-  offers: Offer[];
+  offers: Offer[],
+  activeOffer: Offer | undefined,
+  setActiveOffer(newActiveOffer: Offer | undefined): void,
 }
 
-function CardsList({offers}: CardsListProps): JSX.Element {
-  const [activeOffer, setActiveOffer] = useState<Offer | null>(null);
+function CardsList({offers, activeOffer, setActiveOffer}: CardsListProps): JSX.Element {
 
   const mouseOverHandler = (offer: Offer) => {
     if (activeOffer === offer) {
@@ -16,12 +16,16 @@ function CardsList({offers}: CardsListProps): JSX.Element {
     setActiveOffer(offer);
   };
 
+  const mouseLeaveHandler = () => {
+    setActiveOffer(undefined);
+  };
+
   return (
     <>
       {
         offers
           .map((offer) => (
-            <article onMouseOver={() => mouseOverHandler(offer)} key={offer.id} className="cities__card place-card">
+            <article onMouseOver={() => mouseOverHandler(offer)} onMouseLeave={() => mouseLeaveHandler()} key={offer.id} className="cities__card place-card">
               <Card
                 offer={offer}
               />

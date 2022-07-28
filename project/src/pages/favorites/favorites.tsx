@@ -5,9 +5,12 @@ import {useAppSelector} from '../../hooks';
 
 function FavoritesScreen(): JSX.Element {
   const {offers} = useAppSelector((state) => state);
-  if (!offers || !offers.length) {
+  const favoriteOffers = offers.filter((offer) => offer.isFavorite);
+
+  if (!favoriteOffers || !favoriteOffers.length) {
     return <FavoritesEmptyScreen />;
   }
+
   return (
     <div className="page">
       <Header />
@@ -16,7 +19,7 @@ function FavoritesScreen(): JSX.Element {
           <section className="favorites">
             <h1 className="favorites__title">Saved listing</h1>
             <ul className="favorites__list">
-              <FavoriteCardsList offers={offers} />
+              <FavoriteCardsList offers={favoriteOffers} />
             </ul>
           </section>
         </div>
