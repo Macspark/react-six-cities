@@ -1,5 +1,5 @@
 import {Review} from '../../types/review';
-import {getRatingWidth} from '../../util';
+import {getRatingWidth} from '../../utils';
 
 type ReviewCardProps = {
   review: Review;

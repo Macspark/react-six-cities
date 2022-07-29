@@ -1,6 +1,6 @@
 import {Offer} from '../../types/offer';
 import {Link} from 'react-router-dom';
-import {getRatingWidth} from '../../util';
+import {getRatingWidth} from '../../utils';
 
 type CardProps = {
   offer: Offer;
