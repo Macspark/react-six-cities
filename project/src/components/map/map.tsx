@@ -47,7 +47,16 @@ function Map(props: MapProps): JSX.Element {
           .addTo(map);
       });
 
-      map.flyTo({lat: city.location.latitude, lng: city.location.longitude}, city.location.zoom);
+      map.flyTo(
+        {
+          lat: city.location.latitude,
+          lng: city.location.longitude
+        },
+        city.location.zoom,
+        {
+          animate: false,
+        }
+      );
     }
 
   }, [map, offers, city, activeOffer]);

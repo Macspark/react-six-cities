@@ -1,20 +1,31 @@
 import {createReducer} from '@reduxjs/toolkit';
-import {changeCity, getOffers} from './action';
+import {changeCity, loadOffers, setDataLoadedStatus} from './action';
 import {DEFAULT_CITY} from '../const';
-import {offers} from '../mocks/offers';
+import {City} from '../types/map';
+import {Offer} from '../types/offer';
 
-const initialState = {
+type InitialState = {
+  currentCity: City,
+  offers: Offer[],
+  isDataLoaded: boolean,
+}
+
+const initialState: InitialState = {
   currentCity: DEFAULT_CITY,
-  offers,
+  offers: [],
+  isDataLoaded: false,
 };
 
 const reducer = createReducer(initialState, (builder) => {
   builder
     .addCase(changeCity, (state, action) => {
-      state.currentCity = action.payload.city;
+      state.currentCity = action.payload;
     })
-    .addCase(getOffers, (state) => {
-      state.offers = offers;
+    .addCase(loadOffers, (state, action) => {
+      state.offers = action.payload;
+    })
+    .addCase(setDataLoadedStatus, (state, action) => {
+      state.isDataLoaded = action.payload;
     });
 });
 
