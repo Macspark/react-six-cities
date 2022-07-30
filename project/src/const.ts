@@ -13,6 +13,11 @@ export enum AuthorizationStatus {
   Unknown = 'UNKNOWN',
 }
 
+export enum APIRoute {
+  Offers = '/hotels',
+  Login = '/login',
+}
+
 export const CITIES: Record<string, City> = {
   'Paris': {
     'location': {
@@ -81,7 +86,3 @@ export const URL_MARKER_ACTIVE =
 
 export const BACKEND_URL = 'https://10.react.pages.academy/six-cities';
 export const REQUEST_TIMEOUT = 5000;
-
-export enum APIRoute {
-  Offers = '/hotels',
-}

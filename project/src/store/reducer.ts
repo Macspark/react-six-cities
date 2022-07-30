@@ -1,6 +1,6 @@
 import {createReducer} from '@reduxjs/toolkit';
-import {changeCity, loadOffers, setDataLoadedStatus} from './action';
-import {DEFAULT_CITY} from '../const';
+import {changeCity, loadOffers, setDataLoadedStatus, setAuthStatus} from './action';
+import {AuthorizationStatus, DEFAULT_CITY} from '../const';
 import {City} from '../types/map';
 import {Offer} from '../types/offer';
 
@@ -8,12 +8,14 @@ type InitialState = {
   currentCity: City,
   offers: Offer[],
   isDataLoaded: boolean,
+  authorizationStatus: AuthorizationStatus,
 }
 
 const initialState: InitialState = {
   currentCity: DEFAULT_CITY,
   offers: [],
   isDataLoaded: false,
+  authorizationStatus: AuthorizationStatus.NoAuth,
 };
 
 const reducer = createReducer(initialState, (builder) => {
@@ -26,6 +28,9 @@ const reducer = createReducer(initialState, (builder) => {
     })
     .addCase(setDataLoadedStatus, (state, action) => {
       state.isDataLoaded = action.payload;
+    })
+    .addCase(setAuthStatus, (state, action) => {
+      state.authorizationStatus = action.payload;
     });
 });
 
