@@ -1,4 +1,4 @@
-import axios, {AxiosInstance, AxiosRequestConfig, AxiosResponse, AxiosError} from 'axios';
+import axios, {AxiosInstance, AxiosRequestConfig, AxiosResponse} from 'axios';
 import {BACKEND_URL, REQUEST_TIMEOUT} from '../const';
 import {getToken} from './token';
 import {StatusCodes} from 'http-status-codes';
@@ -33,12 +33,12 @@ export const createAPI = (): AxiosInstance => {
     (response) => response,
     (error) => {
       if (error.response && shouldDisplayError(error.response)) {
-        console.log(error);
+        throw error;
       }
 
       throw error;
     }
-  )
+  );
 
   return api;
 };
