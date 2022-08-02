@@ -10,3 +10,11 @@ export type Review = {
     'name': string,
   },
 }
+
+export type ReviewPostData = {
+  'offerId': string,
+  'formData': {
+    'comment': string,
+    'rating': string,
+  },
+}

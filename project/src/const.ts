@@ -15,8 +15,11 @@ export enum AuthorizationStatus {
 
 export enum APIRoute {
   Offers = '/hotels',
+  Offer = '/hotels/',
   Login = '/login',
   Logout = '/logout',
+  Reviews = '/comments/',
+  Nearby = '/nearby',
 }
 
 export const CITIES: Record<string, City> = {

@@ -8,30 +8,35 @@ import {useEffect} from 'react';
 import {useLocation} from 'react-router';
 import {useParams} from 'react-router-dom';
 import {getRatingWidth} from '../../utils';
-import {useAppSelector} from '../../hooks';
-import {reviews} from '../../mocks/reviews';
+import {useAppDispatch, useAppSelector} from '../../hooks';
 import {useState} from 'react';
 import {Offer} from '../../types/offer';
+import {fetchNearbyOffersAction, fetchOfferByIdAction, fetchReviewsAction} from '../../store/api-actions';
+import { AuthorizationStatus } from '../../const';
 
 function PropertyScreen(): JSX.Element {
-  const {offers} = useAppSelector((state) => state);
   const [activeOffer, setActiveOffer] = useState<Offer | undefined>(undefined);
   const {id} = useParams();
+  const dispatch = useAppDispatch();
 
-  const currentOffer = offers.find((offer) =>
-    offer.id.toString() === id
-  );
+  useEffect(() => {
+    dispatch(fetchOfferByIdAction(id));
+    dispatch(fetchNearbyOffersAction(id));
+    dispatch(fetchReviewsAction(id));
+  }, [id, dispatch]);
+
+  const {currentOffer, nearbyOffers, reviews, authorizationStatus} = useAppSelector((state) => state);
+  
+  console.log(nearbyOffers);
 
   const location = useLocation();
   useEffect(() => {
     window.scrollTo(0, 0);
   }, [location]);
 
-  if (!currentOffer) {
+  if (currentOffer === null || !id) {
     return <NotFoundScreen />;
   }
-
-  const nearbyOffers = offers.slice(0, 3);
 
   return (
     <div className="page">
@@ -135,7 +140,10 @@ function PropertyScreen(): JSX.Element {
               </div>
               <section className="property__reviews reviews">
                 <ReviewCardsList reviews={reviews} />
-                <CommentForm />
+                {
+                  // authorizationStatus === AuthorizationStatus.Auth &&
+                  <CommentForm offerId={id} />
+                }
               </section>
             </div>
           </div>
