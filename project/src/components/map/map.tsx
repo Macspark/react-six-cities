@@ -32,6 +32,8 @@ function Map(props: MapProps): JSX.Element {
 
   useEffect(() => {
     if (map) {
+      document.querySelectorAll('.leaflet-marker-icon').forEach((elem) => elem.remove());
+
       offers.forEach((offer) => {
         const marker = new Marker({
           lat: offer.location.latitude,

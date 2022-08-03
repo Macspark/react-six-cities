@@ -1,9 +1,10 @@
 import {createReducer} from '@reduxjs/toolkit';
-import {changeCity, loadOffers, setDataLoadedStatus, setAuthStatus, loadCurrentOffer, loadNearbyOffers, loadReviews} from './action';
+import {changeCity, loadOffers, setDataLoadedStatus, setAuthStatus, loadCurrentOffer, loadNearbyOffers, loadReviews, loadUserData} from './action';
 import {AuthorizationStatus, DEFAULT_CITY} from '../const';
 import {City} from '../types/map';
 import {Offer} from '../types/offer';
 import { Review } from '../types/review';
+import { UserData } from '../types/user-data';
 
 type InitialState = {
   currentCity: City,
@@ -13,6 +14,7 @@ type InitialState = {
   currentOffer: Offer | null,
   nearbyOffers: Offer[],
   reviews: Review[],
+  userData: UserData | null,
 }
 
 const initialState: InitialState = {
@@ -23,6 +25,7 @@ const initialState: InitialState = {
   currentOffer: null,
   nearbyOffers: [],
   reviews: [],
+  userData: null,
 };
 
 const reducer = createReducer(initialState, (builder) => {
@@ -47,6 +50,9 @@ const reducer = createReducer(initialState, (builder) => {
     })
     .addCase(loadReviews, (state, action) => {
       state.reviews = action.payload;
+    })
+    .addCase(loadUserData, (state, action) => {
+      state.userData = action.payload;
     });
 });
 

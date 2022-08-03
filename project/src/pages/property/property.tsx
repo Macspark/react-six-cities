@@ -12,11 +12,12 @@ import {useAppDispatch, useAppSelector} from '../../hooks';
 import {useState} from 'react';
 import {Offer} from '../../types/offer';
 import {fetchNearbyOffersAction, fetchOfferByIdAction, fetchReviewsAction} from '../../store/api-actions';
-import { AuthorizationStatus } from '../../const';
+import {AuthorizationStatus} from '../../const';
 
 function PropertyScreen(): JSX.Element {
   const [activeOffer, setActiveOffer] = useState<Offer | undefined>(undefined);
   const {id} = useParams();
+
   const dispatch = useAppDispatch();
 
   useEffect(() => {
@@ -26,8 +27,6 @@ function PropertyScreen(): JSX.Element {
   }, [id, dispatch]);
 
   const {currentOffer, nearbyOffers, reviews, authorizationStatus} = useAppSelector((state) => state);
-  
-  console.log(nearbyOffers);
 
   const location = useLocation();
   useEffect(() => {
@@ -141,7 +140,7 @@ function PropertyScreen(): JSX.Element {
               <section className="property__reviews reviews">
                 <ReviewCardsList reviews={reviews} />
                 {
-                  // authorizationStatus === AuthorizationStatus.Auth &&
+                  authorizationStatus === AuthorizationStatus.Auth &&
                   <CommentForm offerId={id} />
                 }
               </section>
