@@ -2,9 +2,12 @@ import {Link} from 'react-router-dom';
 import {AuthorizationStatus} from '../../const';
 import {useAppDispatch, useAppSelector} from '../../hooks';
 import {logoutAction} from '../../store/api-actions';
+import {getAuthStatus, getUserData} from '../../store/user-process/selectors';
 
 function Header(): JSX.Element {
-  const {authorizationStatus, userData} = useAppSelector((state) => state);
+  const authorizationStatus = useAppSelector(getAuthStatus);
+  const userData = useAppSelector(getUserData);
+
   const dispatch = useAppDispatch();
 
   const loggedUserTemplate = (): JSX.Element => (

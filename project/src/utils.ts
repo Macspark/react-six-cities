@@ -3,11 +3,7 @@ import {SortType} from './const';
 
 export const getRatingWidth = (rating: number): string => `${Math.round(rating) * 20}%`;
 
-export const getOffersInCity = (offers: Offer[], city: string) => (
-  offers.filter((offer) => offer.city.name === city)
-);
-
-export const getSortedOffers = (offers: Offer[], currentSortType: string) => {
+export const sortOffers = (offers: Offer[], currentSortType: string) => {
   switch (currentSortType) {
     case SortType.POPULAR:
       return offers;

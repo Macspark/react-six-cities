@@ -1,8 +1,8 @@
 import {CITIES} from '../../const';
 import {City} from '../../types/map';
 import {useAppDispatch} from '../../hooks';
-import {changeCity} from '../../store/action';
 import React from 'react';
+import {changeCity} from '../../store/site-process/site-process';
 
 type CitiesListProps = {
   currentCity: City,

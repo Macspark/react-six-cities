@@ -90,3 +90,9 @@ export const URL_MARKER_ACTIVE =
 
 export const BACKEND_URL = 'https://10.react.pages.academy/six-cities';
 export const REQUEST_TIMEOUT = 5000;
+
+export enum NameSpace {
+  Data = 'DATA',
+  User = 'USER',
+  Site = 'SITE',
+}

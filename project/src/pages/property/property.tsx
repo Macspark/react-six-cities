@@ -13,6 +13,8 @@ import {useState} from 'react';
 import {Offer} from '../../types/offer';
 import {fetchNearbyOffersAction, fetchOfferByIdAction, fetchReviewsAction} from '../../store/api-actions';
 import {AuthorizationStatus} from '../../const';
+import {getCurrentOffer, getNearbyOffers, getReviews} from '../../store/data-process/selectors';
+import {getAuthStatus } from '../../store/user-process/selectors';
 
 function PropertyScreen(): JSX.Element {
   const [activeOffer, setActiveOffer] = useState<Offer | undefined>(undefined);
@@ -24,9 +26,12 @@ function PropertyScreen(): JSX.Element {
     dispatch(fetchOfferByIdAction(id));
     dispatch(fetchNearbyOffersAction(id));
     dispatch(fetchReviewsAction(id));
-  }, [id, dispatch]);
+  }, [id]);
 
-  const {currentOffer, nearbyOffers, reviews, authorizationStatus} = useAppSelector((state) => state);
+  const currentOffer = useAppSelector(getCurrentOffer);
+  const nearbyOffers = useAppSelector(getNearbyOffers);
+  const reviews = useAppSelector(getReviews);
+  const authorizationStatus = useAppSelector(getAuthStatus);
 
   const location = useLocation();
   useEffect(() => {
