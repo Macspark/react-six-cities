@@ -1,3 +1,4 @@
+import React, { useMemo } from 'react';
 import {Link} from 'react-router-dom';
 import {AuthorizationStatus} from '../../const';
 import {useAppDispatch, useAppSelector} from '../../hooks';
@@ -10,7 +11,7 @@ function Header(): JSX.Element {
 
   const dispatch = useAppDispatch();
 
-  const loggedUserTemplate = (): JSX.Element => (
+  const loggedUserTemplate = useMemo((): JSX.Element => (
     <>
       <li className="header__nav-item user">
         <Link className="header__nav-link header__nav-link--profile" to="/favorites">
@@ -33,9 +34,10 @@ function Header(): JSX.Element {
         </Link>
       </li>
     </>
-  );
+  ),
+  [userData, dispatch]);
 
-  const loginTemplate = (): JSX.Element => (
+  const loginTemplate: JSX.Element = (
     <li className="header__nav-item user">
       <Link className="header__nav-link header__nav-link--profile" to="/login">
         <div className="header__avatar-wrapper user__avatar-wrapper">
@@ -58,7 +60,7 @@ function Header(): JSX.Element {
             <ul className="header__nav-list">
               {
                 authorizationStatus === AuthorizationStatus.Auth ?
-                  loggedUserTemplate() : loginTemplate()
+                  loggedUserTemplate : loginTemplate
               }
             </ul>
           </nav>
@@ -69,4 +71,4 @@ function Header(): JSX.Element {
   );
 }
 
-export default Header;
+export default React.memo(Header);

@@ -1,7 +1,7 @@
 import {createSlice} from '@reduxjs/toolkit';
 import {NameSpace} from '../../const';
 import {DataProcess} from '../../types/state';
-import {fetchNearbyOffersAction, fetchOfferByIdAction, fetchOffersAction, fetchReviewsAction, postReviewAction} from '../api-actions';
+import {fetchNearbyOffersAction, fetchOfferByIdAction, fetchOffersAction, fetchReviewsAction, postReviewAction, toggleFavoriteAction} from '../api-actions';
 
 const initialState: DataProcess = {
   offers: [],
@@ -32,6 +32,20 @@ export const dataProcess = createSlice({
       })
       .addCase(postReviewAction.fulfilled, (state, action) => {
         state.reviews = action.payload;
+      })
+      .addCase(toggleFavoriteAction.fulfilled, (state, action) => {
+        const updatedOffer = action.payload;
+        const index = state.offers.findIndex((offer) => offer.id === updatedOffer.id);
+
+        if (index === -1) {
+          throw new Error('Can\'t update unexisting movie');
+        }
+
+        state.offers = [
+          ...state.offers.slice(0, index),
+          updatedOffer,
+          ...state.offers.slice(index + 1),
+        ];
       });
   },
 });

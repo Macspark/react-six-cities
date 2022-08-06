@@ -5,7 +5,7 @@ import Sort from '../../components/sort/sort';
 import Map from '../../components/map/map';
 import {useAppSelector} from '../../hooks';
 import {SortType} from '../../const';
-import {useState} from 'react';
+import React, {useMemo, useState} from 'react';
 import {Offer} from '../../types/offer';
 import {getOffersInCurrentCity} from '../../store/data-process/selectors';
 import {getCurrentCity} from '../../store/site-process/selectors';
@@ -15,13 +15,17 @@ function MainScreen(): JSX.Element {
   const [currentSortType, changeSortType] = useState(SortType.POPULAR);
   const [activeOffer, setActiveOffer] = useState<Offer | undefined>(undefined);
 
-  const currentCity = useAppSelector(getCurrentCity);
-  const offers = sortOffers(
-    useAppSelector(getOffersInCurrentCity),
-    currentSortType
-  );
+  const offers = useAppSelector(getOffersInCurrentCity);
 
-  const offerCount = offers.length;
+  const currentCity = useAppSelector(getCurrentCity);
+  const sortedOffers = useMemo(() =>
+    sortOffers(
+      offers,
+      currentSortType
+    ),
+  [offers, currentSortType]);
+
+  const offerCount = sortedOffers.length;
 
   const cardsListTemplate = () => (
     <div className="cities__places-container container">
@@ -30,12 +34,12 @@ function MainScreen(): JSX.Element {
         <b className="places__found">{offerCount} places to stay in {currentCity.name}</b>
         <Sort currentSortType={currentSortType} changeSortType={changeSortType} />
         <div className="cities__places-list places__list tabs__content">
-          <CardsList offers={offers} activeOffer={activeOffer} setActiveOffer={setActiveOffer} />
+          <CardsList offers={sortedOffers} activeOffer={activeOffer} setActiveOffer={setActiveOffer} />
         </div>
       </section>
       <div className="cities__right-section">
         <section className="cities__map map">
-          <Map city={currentCity} offers={offers} activeOffer={activeOffer} />
+          <Map city={currentCity} offers={sortedOffers} activeOffer={activeOffer} />
         </section>
       </div>
     </div>
@@ -56,7 +60,7 @@ function MainScreen(): JSX.Element {
   return (
     <div className="page page--gray page--main">
       <Header />
-      <main className={`page__main page__main--index ${offers.length && 'page__main--index-empty'}`}>
+      <main className={`page__main page__main--index ${sortedOffers.length && 'page__main--index-empty'}`}>
         <h1 className="visually-hidden">Cities</h1>
         <div className="tabs">
           <section className="locations container">
@@ -65,7 +69,7 @@ function MainScreen(): JSX.Element {
         </div>
         <div className="cities">
           {
-            offers.length ?
+            sortedOffers.length ?
               cardsListTemplate() : emptyCardsListTemplate()
           }
         </div>
@@ -74,4 +78,4 @@ function MainScreen(): JSX.Element {
   );
 }
 
-export default MainScreen;
+export default React.memo(MainScreen);

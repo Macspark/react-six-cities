@@ -20,6 +20,7 @@ export enum APIRoute {
   Logout = '/logout',
   Reviews = '/comments/',
   Nearby = '/nearby',
+  Favorite = '/favorite/',
 }
 
 export const CITIES: Record<string, City> = {

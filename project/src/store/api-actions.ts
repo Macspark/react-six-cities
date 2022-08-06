@@ -3,7 +3,7 @@ import {createAsyncThunk} from '@reduxjs/toolkit';
 import {AppDispatch, State} from '../types/state';
 import {AuthData} from '../types/auth-data';
 import {UserData} from '../types/user-data';
-import {Offer} from '../types/offer';
+import {FavoritePostData, Offer} from '../types/offer';
 import {dropToken, saveToken} from '../services/token';
 import {redirectToRoute} from './action';
 import {APIRoute, AppRoute} from '../const';
@@ -103,6 +103,18 @@ export const postReviewAction = createAsyncThunk<Review[], ReviewPostData, {
   'data/postReview',
   async ({offerId, formData}, {dispatch, extra: api}) => {
     const {data} = await api.post<Review[]>(`${APIRoute.Reviews}${offerId}`, formData);
+    return data;
+  },
+);
+
+export const toggleFavoriteAction = createAsyncThunk<Offer, FavoritePostData, {
+  dispatch: AppDispatch,
+  state: State,
+  extra: AxiosInstance
+}>(
+  'data/toggleFavoriteAction',
+  async ({offerId, isFavorite}, {dispatch, extra: api}) => {
+    const {data} = await api.post<Offer>(`${APIRoute.Favorite}${offerId}/${isFavorite}`);
     return data;
   },
 );

@@ -1,18 +1,29 @@
-import {FormEvent, useRef} from 'react';
-import {Link} from 'react-router-dom';
-import {useAppDispatch} from '../../hooks';
+import {FormEvent, useEffect, useRef} from 'react';
+import {Link, useNavigate} from 'react-router-dom';
+import { AppRoute, AuthorizationStatus } from '../../const';
+import {useAppDispatch, useAppSelector} from '../../hooks';
 import {loginAction} from '../../store/api-actions';
+import { getAuthStatus } from '../../store/user-process/selectors';
 import {AuthData} from '../../types/auth-data';
 
 function LoginScreen(): JSX.Element {
   const emailRef = useRef<HTMLInputElement | null>(null);
   const passwordRef = useRef<HTMLInputElement | null>(null);
 
+  const navigate = useNavigate();
   const dispatch = useAppDispatch();
 
   const onSubmit = (authData: AuthData) => {
     dispatch(loginAction(authData));
   };
+
+  const authStatus = useAppSelector(getAuthStatus);
+
+  useEffect(() => {
+    if (authStatus === AuthorizationStatus.Auth) {
+      navigate(AppRoute.Root);
+    }
+  }, []);
 
   const handleSubmit = (evt: FormEvent<HTMLFormElement>) => {
     evt.preventDefault();

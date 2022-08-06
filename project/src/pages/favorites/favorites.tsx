@@ -3,6 +3,7 @@ import FavoriteCardsList from '../../components/favorite-cards-list/favorite-car
 import FavoritesEmptyScreen from '../favorites-empty/favorites-empty';
 import {useAppSelector} from '../../hooks';
 import {getOffers} from '../../store/data-process/selectors';
+import React from 'react';
 
 function FavoritesScreen(): JSX.Element {
   const offers = useAppSelector(getOffers);
@@ -34,4 +35,4 @@ function FavoritesScreen(): JSX.Element {
   );
 }
 
-export default FavoritesScreen;
+export default React.memo(FavoritesScreen);
