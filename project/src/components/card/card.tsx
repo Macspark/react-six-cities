@@ -1,11 +1,8 @@
 import {Offer} from '../../types/offer';
-import {Link, useNavigate} from 'react-router-dom';
+import {Link} from 'react-router-dom';
 import {getRatingWidth} from '../../utils';
-import {useAppDispatch, useAppSelector} from '../../hooks';
-import {AppRoute, AuthorizationStatus} from '../../const';
-import {getAuthStatus} from '../../store/user-process/selectors';
-import {toggleFavoriteAction} from '../../store/api-actions';
 import React from 'react';
+import { useFavorite } from '../../hooks/useFavorite';
 
 type CardProps = {
   offer: Offer;
@@ -14,21 +11,8 @@ type CardProps = {
 function Card({offer}: CardProps): JSX.Element {
   const ratingWidth = getRatingWidth(offer.rating);
   const offerLink = `/offer/${offer.id}`;
-  const authorizationStatus = useAppSelector(getAuthStatus);
 
-  const dispatch = useAppDispatch();
-  const navigate = useNavigate();
-
-  const handleFavoriteClick = () => {
-    if (authorizationStatus !== AuthorizationStatus.Auth) {
-      navigate(AppRoute.Login);
-      return;
-    }
-    dispatch(toggleFavoriteAction({
-      offerId: offer.id.toString(),
-      isFavorite: +!offer.isFavorite,
-    }));
-  };
+  const handleFavoriteClick = useFavorite(offer);
 
   return (
     <>

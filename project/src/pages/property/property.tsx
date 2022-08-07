@@ -5,23 +5,23 @@ import NotFoundScreen from '../../pages/not-found/not-found';
 import Map from '../../components/map/map';
 import CardsList from '../../components/cards-list/cards-list';
 import React, {useEffect} from 'react';
-import {useLocation, useNavigate} from 'react-router';
+import {useLocation} from 'react-router';
 import {useParams} from 'react-router-dom';
 import {getRatingWidth} from '../../utils';
 import {useAppDispatch, useAppSelector} from '../../hooks';
 import {useState} from 'react';
 import {Offer} from '../../types/offer';
-import {fetchNearbyOffersAction, fetchOfferByIdAction, fetchReviewsAction, toggleFavoriteAction} from '../../store/api-actions';
-import {AppRoute, AuthorizationStatus} from '../../const';
+import {fetchNearbyOffersAction, fetchOfferByIdAction, fetchReviewsAction} from '../../store/api-actions';
+import {AuthorizationStatus} from '../../const';
 import {getCurrentOffer, getNearbyOffers, getReviews} from '../../store/data-process/selectors';
 import {getAuthStatus} from '../../store/user-process/selectors';
+import {useFavorite} from '../../hooks/useFavorite';
 
 function PropertyScreen(): JSX.Element {
   const [activeOffer, setActiveOffer] = useState<Offer | undefined>(undefined);
   const {id} = useParams();
 
   const dispatch = useAppDispatch();
-  const navigate = useNavigate();
   const location = useLocation();
 
   useEffect(() => {
@@ -39,20 +39,11 @@ function PropertyScreen(): JSX.Element {
     window.scrollTo(0, 0);
   }, [location]);
 
+  const handleFavoriteClick = useFavorite(currentOffer);
+
   if (currentOffer === null || !id) {
     return <NotFoundScreen />;
   }
-
-  const handleFavoriteClick = () => {
-    if (authorizationStatus !== AuthorizationStatus.Auth) {
-      navigate(AppRoute.Login);
-      return;
-    }
-    dispatch(toggleFavoriteAction({
-      offerId: id,
-      isFavorite: +!currentOffer.isFavorite,
-    }));
-  };
 
   return (
     <div className="page">
