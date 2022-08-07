@@ -14,7 +14,7 @@ import {Offer} from '../../types/offer';
 import {fetchNearbyOffersAction, fetchOfferByIdAction, fetchReviewsAction, toggleFavoriteAction} from '../../store/api-actions';
 import {AppRoute, AuthorizationStatus} from '../../const';
 import {getCurrentOffer, getNearbyOffers, getReviews} from '../../store/data-process/selectors';
-import {getAuthStatus } from '../../store/user-process/selectors';
+import {getAuthStatus} from '../../store/user-process/selectors';
 
 function PropertyScreen(): JSX.Element {
   const [activeOffer, setActiveOffer] = useState<Offer | undefined>(undefined);

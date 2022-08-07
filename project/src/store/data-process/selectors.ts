@@ -8,6 +8,8 @@ export const getLoadedDataStatus = (state: State): boolean => state[NameSpace.Da
 export const getCurrentOffer = (state: State): Offer | null => state[NameSpace.Data].currentOffer;
 export const getNearbyOffers = (state: State): Offer[] => state[NameSpace.Data].nearbyOffers;
 export const getReviews = (state: State): Review[] => state[NameSpace.Data].reviews;
+export const getFavoriteOffers = (state: State): Offer[] => state[NameSpace.Data].favoriteOffers;
+export const getFavoriteOffersCount = (state: State): number => state[NameSpace.Data].favoriteOffers.length;
 
 export const getOffersInCurrentCity = (state: State): Offer[] =>
   state[NameSpace.Data].offers.filter((offer) =>

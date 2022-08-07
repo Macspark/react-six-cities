@@ -21,6 +21,7 @@ export type DataProcess = {
   currentOffer: Offer | null,
   nearbyOffers: Offer[],
   reviews: Review[],
+  favoriteOffers: Offer[],
 }
 
 export type SiteProcess = {
