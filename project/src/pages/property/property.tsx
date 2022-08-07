@@ -4,21 +4,25 @@ import ReviewCardsList from '../../components/review-cards-list/review-cards-lis
 import NotFoundScreen from '../../pages/not-found/not-found';
 import Map from '../../components/map/map';
 import CardsList from '../../components/cards-list/cards-list';
-import {useEffect} from 'react';
-import {useLocation} from 'react-router';
+import React, {useEffect} from 'react';
+import {useLocation, useNavigate} from 'react-router';
 import {useParams} from 'react-router-dom';
 import {getRatingWidth} from '../../utils';
 import {useAppDispatch, useAppSelector} from '../../hooks';
 import {useState} from 'react';
 import {Offer} from '../../types/offer';
-import {fetchNearbyOffersAction, fetchOfferByIdAction, fetchReviewsAction} from '../../store/api-actions';
-import {AuthorizationStatus} from '../../const';
+import {fetchNearbyOffersAction, fetchOfferByIdAction, fetchReviewsAction, toggleFavoriteAction} from '../../store/api-actions';
+import {AppRoute, AuthorizationStatus} from '../../const';
+import {getCurrentOffer, getNearbyOffers, getReviews} from '../../store/data-process/selectors';
+import {getAuthStatus } from '../../store/user-process/selectors';
 
 function PropertyScreen(): JSX.Element {
   const [activeOffer, setActiveOffer] = useState<Offer | undefined>(undefined);
   const {id} = useParams();
 
   const dispatch = useAppDispatch();
+  const navigate = useNavigate();
+  const location = useLocation();
 
   useEffect(() => {
     dispatch(fetchOfferByIdAction(id));
@@ -26,9 +30,11 @@ function PropertyScreen(): JSX.Element {
     dispatch(fetchReviewsAction(id));
   }, [id, dispatch]);
 
-  const {currentOffer, nearbyOffers, reviews, authorizationStatus} = useAppSelector((state) => state);
+  const currentOffer = useAppSelector(getCurrentOffer);
+  const nearbyOffers = useAppSelector(getNearbyOffers);
+  const reviews = useAppSelector(getReviews);
+  const authorizationStatus = useAppSelector(getAuthStatus);
 
-  const location = useLocation();
   useEffect(() => {
     window.scrollTo(0, 0);
   }, [location]);
@@ -36,6 +42,17 @@ function PropertyScreen(): JSX.Element {
   if (currentOffer === null || !id) {
     return <NotFoundScreen />;
   }
+
+  const handleFavoriteClick = () => {
+    if (authorizationStatus !== AuthorizationStatus.Auth) {
+      navigate(AppRoute.Login);
+      return;
+    }
+    dispatch(toggleFavoriteAction({
+      offerId: id,
+      isFavorite: +!currentOffer.isFavorite,
+    }));
+  };
 
   return (
     <div className="page">
@@ -68,8 +85,15 @@ function PropertyScreen(): JSX.Element {
                 <h1 className="property__name">
                   {currentOffer.title}
                 </h1>
-                <button className={`property__bookmark-button button ${currentOffer.isFavorite && 'property__bookmark-button--active'}`} type="button">
-                  <svg className="property__bookmark-icon" width={31} height={33}>
+                <button onClick={handleFavoriteClick} className="property__bookmark-button button" type="button">
+                  <svg
+                    className="property__bookmark-icon"
+                    style={currentOffer.isFavorite ? {
+                      stroke: '#4481c3',
+                      fill: '#4481c3',
+                    } : {}}
+                    width={31} height={33}
+                  >
                     <use xlinkHref="#icon-bookmark" />
                   </svg>
                   <span className="visually-hidden">To bookmarks</span>
@@ -164,4 +188,4 @@ function PropertyScreen(): JSX.Element {
   );
 }
 
-export default PropertyScreen;
+export default React.memo(PropertyScreen);

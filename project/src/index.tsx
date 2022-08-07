@@ -6,13 +6,17 @@ import {store} from './store';
 import {checkAuthAction, fetchOffersAction} from './store/api-actions';
 import {ToastContainer} from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import {getToken} from './services/token';
 
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement,
 );
 
 store.dispatch(fetchOffersAction());
-store.dispatch(checkAuthAction());
+if (getToken()) {
+  store.dispatch(checkAuthAction());
+}
+
 
 root.render(
   <React.StrictMode>

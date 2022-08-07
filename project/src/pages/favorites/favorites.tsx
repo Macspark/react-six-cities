@@ -2,9 +2,11 @@ import Header from '../../components/header/header';
 import FavoriteCardsList from '../../components/favorite-cards-list/favorite-cards-list';
 import FavoritesEmptyScreen from '../favorites-empty/favorites-empty';
 import {useAppSelector} from '../../hooks';
+import {getOffers} from '../../store/data-process/selectors';
+import React from 'react';
 
 function FavoritesScreen(): JSX.Element {
-  const {offers} = useAppSelector((state) => state);
+  const offers = useAppSelector(getOffers);
   const favoriteOffers = offers.filter((offer) => offer.isFavorite);
 
   if (!favoriteOffers || !favoriteOffers.length) {
@@ -33,4 +35,4 @@ function FavoritesScreen(): JSX.Element {
   );
 }
 
-export default FavoritesScreen;
+export default React.memo(FavoritesScreen);

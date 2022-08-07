@@ -34,3 +34,8 @@ export type Offer = {
   'location': OfferLocation,
   'maxAdults': number,
 };
+
+export type FavoritePostData = {
+  'offerId': string,
+  'isFavorite': number,
+}
