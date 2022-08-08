@@ -1,7 +1,7 @@
 import {createSlice} from '@reduxjs/toolkit';
 import {NameSpace} from '../../const';
 import {DataProcess} from '../../types/state';
-import {fetchNearbyOffersAction, fetchOfferByIdAction, fetchOffersAction, fetchReviewsAction, postReviewAction, toggleFavoriteAction} from '../api-actions';
+import {fetchFavoriteOffersAction, fetchNearbyOffersAction, fetchOfferByIdAction, fetchOffersAction, fetchReviewsAction, postReviewAction, toggleFavoriteAction} from '../api-actions';
 
 const initialState: DataProcess = {
   offers: [],
@@ -9,6 +9,7 @@ const initialState: DataProcess = {
   currentOffer: null,
   nearbyOffers: [],
   reviews: [],
+  favoriteOffers: [],
 };
 
 export const dataProcess = createSlice({
@@ -46,6 +47,13 @@ export const dataProcess = createSlice({
           updatedOffer,
           ...state.offers.slice(index + 1),
         ];
+
+        if (state.currentOffer && state.currentOffer.id === updatedOffer.id) {
+          state.currentOffer = updatedOffer;
+        }
+      })
+      .addCase(fetchFavoriteOffersAction.fulfilled, (state, action) => {
+        state.favoriteOffers = action.payload;
       });
   },
 });

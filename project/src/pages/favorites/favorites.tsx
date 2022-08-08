@@ -2,14 +2,13 @@ import Header from '../../components/header/header';
 import FavoriteCardsList from '../../components/favorite-cards-list/favorite-cards-list';
 import FavoritesEmptyScreen from '../favorites-empty/favorites-empty';
 import {useAppSelector} from '../../hooks';
-import {getOffers} from '../../store/data-process/selectors';
+import {getFavoriteOffers} from '../../store/data-process/selectors';
 import React from 'react';
 
 function FavoritesScreen(): JSX.Element {
-  const offers = useAppSelector(getOffers);
-  const favoriteOffers = offers.filter((offer) => offer.isFavorite);
+  const offers = useAppSelector(getFavoriteOffers);
 
-  if (!favoriteOffers || !favoriteOffers.length) {
+  if (!offers || !offers.length) {
     return <FavoritesEmptyScreen />;
   }
 
@@ -21,7 +20,7 @@ function FavoritesScreen(): JSX.Element {
           <section className="favorites">
             <h1 className="favorites__title">Saved listing</h1>
             <ul className="favorites__list">
-              <FavoriteCardsList offers={favoriteOffers} />
+              <FavoriteCardsList offers={offers} />
             </ul>
           </section>
         </div>

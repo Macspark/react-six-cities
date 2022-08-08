@@ -3,11 +3,13 @@ import {Link} from 'react-router-dom';
 import {AuthorizationStatus} from '../../const';
 import {useAppDispatch, useAppSelector} from '../../hooks';
 import {logoutAction} from '../../store/api-actions';
+import {getFavoriteOffersCount} from '../../store/data-process/selectors';
 import {getAuthStatus, getUserData} from '../../store/user-process/selectors';
 
 function Header(): JSX.Element {
   const authorizationStatus = useAppSelector(getAuthStatus);
   const userData = useAppSelector(getUserData);
+  const favoriteOffersCount = useAppSelector(getFavoriteOffersCount);
 
   const dispatch = useAppDispatch();
 
@@ -18,7 +20,7 @@ function Header(): JSX.Element {
           <div className="header__avatar-wrapper user__avatar-wrapper">
           </div>
           <span className="header__user-name user__name">{userData && userData.email ? userData.email : 'Unknown user'}</span>
-          <span className="header__favorite-count">0</span>
+          <span className="header__favorite-count">{favoriteOffersCount}</span>
         </Link>
       </li>
       <li className="header__nav-item">
@@ -35,7 +37,7 @@ function Header(): JSX.Element {
       </li>
     </>
   ),
-  [userData, dispatch]);
+  [userData, favoriteOffersCount, dispatch]);
 
   const loginTemplate: JSX.Element = (
     <li className="header__nav-item user">

@@ -27,7 +27,7 @@ function MainScreen(): JSX.Element {
 
   const offerCount = sortedOffers.length;
 
-  const cardsListTemplate = () => (
+  const cardsListTemplate = useMemo((): JSX.Element => (
     <div className="cities__places-container container">
       <section className="cities__places places">
         <h2 className="visually-hidden">Places</h2>
@@ -43,9 +43,9 @@ function MainScreen(): JSX.Element {
         </section>
       </div>
     </div>
-  );
+  ), [currentCity, sortedOffers, currentSortType, offerCount, activeOffer]);
 
-  const emptyCardsListTemplate = () => (
+  const emptyCardsListTemplate: JSX.Element = (
     <div className="cities__places-container cities__places-container--empty container">
       <section className="cities__no-places">
         <div className="cities__status-wrapper tabs__content">
@@ -60,7 +60,7 @@ function MainScreen(): JSX.Element {
   return (
     <div className="page page--gray page--main">
       <Header />
-      <main className={`page__main page__main--index ${sortedOffers.length && 'page__main--index-empty'}`}>
+      <main className={`page__main page__main--index ${sortedOffers.length === 0 && 'page__main--index-empty'}`}>
         <h1 className="visually-hidden">Cities</h1>
         <div className="tabs">
           <section className="locations container">
@@ -70,7 +70,7 @@ function MainScreen(): JSX.Element {
         <div className="cities">
           {
             sortedOffers.length ?
-              cardsListTemplate() : emptyCardsListTemplate()
+              cardsListTemplate : emptyCardsListTemplate
           }
         </div>
       </main>

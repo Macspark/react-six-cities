@@ -27,4 +27,3 @@ export const sortOffers = (offers: Offer[], currentSortType: string) => {
       return offers;
   }
 };
-

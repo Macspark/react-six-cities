@@ -1,6 +1,7 @@
 import {Offer} from '../../types/offer';
 import {Link} from 'react-router-dom';
 import {getRatingWidth} from '../../utils';
+import {useFavorite} from '../../hooks/useFavorite';
 
 type FavoriteCardProps = {
   offer: Offer;
@@ -9,6 +10,8 @@ type FavoriteCardProps = {
 function FavoriteCard({offer}: FavoriteCardProps): JSX.Element {
   const ratingWidth = getRatingWidth(offer.rating);
   const offerLink = `/offer/${offer.id}`;
+
+  const handleFavoriteClick = useFavorite(offer);
 
   return (
     <article className="favorites__card place-card">
@@ -29,7 +32,7 @@ function FavoriteCard({offer}: FavoriteCardProps): JSX.Element {
             <b className="place-card__price-value">{offer.price}</b>
             <span className="place-card__price-text">/&nbsp;night</span>
           </div>
-          <button className={`place-card__bookmark-button button ${offer.isFavorite && 'place-card__bookmark-button--active'}`} type="button">
+          <button onClick={handleFavoriteClick} className={`place-card__bookmark-button button ${offer.isFavorite && 'place-card__bookmark-button--active'}`} type="button">
             <svg className="place-card__bookmark-icon" width={18} height={19}>
               <use xlinkHref="#icon-bookmark" />
             </svg>

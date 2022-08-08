@@ -23,7 +23,7 @@ function LoginScreen(): JSX.Element {
     if (authStatus === AuthorizationStatus.Auth) {
       navigate(AppRoute.Root);
     }
-  }, []);
+  }, [authStatus, navigate]);
 
   const handleSubmit = (evt: FormEvent<HTMLFormElement>) => {
     evt.preventDefault();
