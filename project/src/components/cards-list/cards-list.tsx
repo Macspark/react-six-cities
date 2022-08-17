@@ -1,3 +1,4 @@
+import React from 'react';
 import {Offer} from '../../types/offer';
 import Card from '../card/card';
 
@@ -36,4 +37,4 @@ function CardsList({offers, activeOffer, setActiveOffer}: CardsListProps): JSX.E
   );
 }
 
-export default CardsList;
+export default React.memo(CardsList);

@@ -1,6 +1,6 @@
 import {Offer} from '../../types/offer';
 import {Link} from 'react-router-dom';
-import {getRatingWidth} from '../../utils';
+import {getRatingWidth} from '../../utils/utils';
 import React from 'react';
 import { useFavorite } from '../../hooks/useFavorite';
 

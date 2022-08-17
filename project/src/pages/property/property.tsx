@@ -7,7 +7,7 @@ import CardsList from '../../components/cards-list/cards-list';
 import React, {useEffect} from 'react';
 import {useLocation} from 'react-router';
 import {useParams} from 'react-router-dom';
-import {getRatingWidth} from '../../utils';
+import {getRatingWidth} from '../../utils/utils';
 import {useAppDispatch, useAppSelector} from '../../hooks';
 import {useState} from 'react';
 import {Offer} from '../../types/offer';
