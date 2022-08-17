@@ -24,13 +24,13 @@ function Card({offer}: CardProps): JSX.Element {
       }
       <div className="cities__image-wrapper place-card__image-wrapper">
         <Link to={offerLink}>
-          <img className="place-card__image" src="img/apartment-03.jpg" width={260} height={200} alt="" />
+          <img className="place-card__image" src={offer.previewImage} width={260} height={200} alt="" />
         </Link>
       </div>
       <div className="place-card__info">
         <div className="place-card__price-wrapper">
           <div className="place-card__price">
-            <b className="place-card__price-value">{offer.price}</b>
+            <b className="place-card__price-value">€{offer.price}</b>
             <span className="place-card__price-text">/&nbsp;night</span>
           </div>
           <button onClick={handleFavoriteClick} className={`place-card__bookmark-button button ${offer.isFavorite && 'place-card__bookmark-button--active'}`} type="button">

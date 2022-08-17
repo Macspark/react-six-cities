@@ -23,7 +23,7 @@ function FavoriteCard({offer}: FavoriteCardProps): JSX.Element {
       }
       <div className="favorites__image-wrapper place-card__image-wrapper">
         <Link to={offerLink}>
-          <img className="place-card__image" src="img/room-small.jpg" width={150} height={110} alt="" />
+          <img className="place-card__image" src={offer.previewImage} width={150} height={110} alt="" />
         </Link>
       </div>
       <div className="favorites__card-info place-card__info">

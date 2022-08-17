@@ -4,6 +4,8 @@ import { postReviewAction } from '../../store/api-actions';
 import CommentFormStar from '../comment-form-star/comment-form-star';
 
 const RATING_VALUES = ['5', '4', '3', '2', '1'];
+const MIN_SYMBOLS = 50;
+const MAX_SYMBOLS = 301;
 
 type CommentFormProps = {
   offerId: string,
@@ -19,6 +21,9 @@ function CommentForm({offerId}: CommentFormProps): JSX.Element {
 
   const handleChange = (evt: ChangeEvent<HTMLInputElement> | ChangeEvent<HTMLTextAreaElement>) => {
     const {name, value} = evt.target;
+    if (name === 'comment' && value.length >= MAX_SYMBOLS) {
+      return;
+    }
     setFormData({...formData, [name]: value});
   };
 
@@ -34,7 +39,7 @@ function CommentForm({offerId}: CommentFormProps): JSX.Element {
   };
 
   const isDisabled =
-    formData.comment.length >= 50 && formData.rating !== '';
+    formData.comment.length >= MIN_SYMBOLS && formData.rating !== '';
 
   return (
     <form className="reviews__form form" onSubmit={handleSubmit}>

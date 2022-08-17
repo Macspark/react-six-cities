@@ -6,12 +6,14 @@ type ReviewCardsListProps = {
 }
 
 function ReviewCardsList({reviews}: ReviewCardsListProps): JSX.Element {
+  const slicedReviews = reviews.slice(0, 10).sort((reviewA, reviewB) => reviewB.id - reviewA.id);
+
   return (
     <>
       <h2 className="reviews__title">Reviews · <span className="reviews__amount">{reviews.length}</span></h2>
       <ul className="reviews__list">
         {
-          reviews.map((review) =>
+          slicedReviews.map((review) =>
             <ReviewCard key={review.id} review={review} />
           )
         }

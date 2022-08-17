@@ -1,5 +1,5 @@
 import {Review} from '../../types/review';
-import {getRatingWidth} from '../../utils';
+import {getHumanMonthYear, getRatingWidth} from '../../utils';
 
 type ReviewCardProps = {
   review: Review;
@@ -28,7 +28,7 @@ function ReviewCard({review}: ReviewCardProps): JSX.Element {
         <p className="reviews__text">
           {review.comment}
         </p>
-        <time className="reviews__time">{review.date}</time>
+        <time className="reviews__time">{getHumanMonthYear(review.date)}</time>
       </div>
     </li>
   );

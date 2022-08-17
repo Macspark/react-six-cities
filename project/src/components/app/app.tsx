@@ -8,7 +8,7 @@ import PropertyScreen from '../../pages/property/property';
 import NotFoundScreen from '../../pages/not-found/not-found';
 import {useAppSelector} from '../../hooks';
 import LoadingScreen from '../../pages/loading-screen/loading-screen';
-import HistoryRouter from '../history-route/history-route';
+import HistoryRouter from '../history-router/history-router';
 import browserHistory from '../../browser-history';
 import {getAuthStatus} from '../../store/user-process/selectors';
 import {getLoadedDataStatus} from '../../store/data-process/selectors';
