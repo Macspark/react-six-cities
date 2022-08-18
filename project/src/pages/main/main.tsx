@@ -9,7 +9,7 @@ import React, {useMemo, useState} from 'react';
 import {Offer} from '../../types/offer';
 import {getOffersInCurrentCity} from '../../store/data-process/selectors';
 import {getCurrentCity} from '../../store/site-process/selectors';
-import {sortOffers} from '../../utils';
+import {getSortedOffers} from '../../utils';
 
 function MainScreen(): JSX.Element {
   const [currentSortType, changeSortType] = useState(SortType.POPULAR);
@@ -19,7 +19,7 @@ function MainScreen(): JSX.Element {
 
   const currentCity = useAppSelector(getCurrentCity);
   const sortedOffers = useMemo(() =>
-    sortOffers(
+    getSortedOffers(
       offers,
       currentSortType
     ),

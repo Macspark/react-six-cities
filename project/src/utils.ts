@@ -2,11 +2,13 @@ import {Offer} from './types/offer';
 import {SortType} from './const';
 import dayjs from 'dayjs';
 
+const RATING_STAR_WIDTH = 20;
+
 export const getHumanMonthYear = (date: string) => date ? dayjs(date).format('MMMM YYYY') : '';
 
-export const getRatingWidth = (rating: number): string => `${Math.round(rating) * 20}%`;
+export const getRatingWidth = (rating: number): string => `${Math.round(rating) * RATING_STAR_WIDTH}%`;
 
-export const sortOffers = (offers: Offer[], currentSortType: string) => {
+export const getSortedOffers = (offers: Offer[], currentSortType: string) => {
   switch (currentSortType) {
     case SortType.POPULAR:
       return offers;
