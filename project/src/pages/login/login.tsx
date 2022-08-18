@@ -77,6 +77,7 @@ function LoginScreen(): JSX.Element {
                   type="password"
                   name="password"
                   placeholder="Password"
+                  pattern="(?=.*\d)(?=.*[a-zA-Z]).*"
                   required
                 />
               </div>

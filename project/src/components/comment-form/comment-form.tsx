@@ -36,6 +36,11 @@ function CommentForm({offerId}: CommentFormProps): JSX.Element {
         formData
       })
     );
+
+    setFormData({
+      comment: '',
+      rating: '',
+    });
   };
 
   const isDisabled =
